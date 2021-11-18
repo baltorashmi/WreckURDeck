@@ -1,0 +1,102 @@
+OAAAA
+A
+import React,{useState} from "react";
+import axios from "axios"
+import {Segment,Grid, Divider} from "semantic-ui-react"
+
+var arrDisplay = [];
+export default function LoadTranscript(props){
+
+    const [data,setData] = useState([]);
+    const [load,setLoad] = useState(true);
+    const [pos, setPos] = useState(0);
+    
+
+    console.log("arr" ,load)
+    if(load){
+
+        axios
+            .get(`api/transcript`, {
+            accept: "application/json",
+            })
+            .then((response) => {
+            setData(response.data);
+            setLoad(false);
+            })
+            .catch((error) => {
+
+
+            console.log(error);
+            });
+
+        
+
+    }
+    console.log("before",pos,arrDisplay);
+    arrDisplay.push(data[pos]);
+ B   console.log("after",arrDisplay);
+    
+
+
+    return (
+        
+
+        <div>
+            <div className="data-box">
+
+
+                <Segment style={{ alignSelf: 'baseline', position: 'sticky', top: '1.5rem' ,overflow: 'auto', maxHeight: 200}}>
+                    <Grid columns={2} stackable textAlign='center'>
+                        <Divider vertical></Divider>
+                        <Grid.Row verticalAlign='middle'>
+                            <Grid.Row verticalAlign='middle'>
+                            <Grid.Column>
+                            <ul>
+                            {arrDisplay.map(item => {
+  A                              return <p>{item}</p>;
+                                })}
+
+                            
+
+                            </ul>
+ A                           </Grid.Column>
+B                        </Grid.Row>        
+                        </Grid.Row>        
+                </Grid>
+                </Segment>
+                <div>
+ A                   <button id="btn"
+A                        onClick={()=>{
+                            setPos(pos+1)
+OB                        }}
+                    >
+                        Next
+                    </button>
+
+
+
+                   
+                </div>
+            </div>
+
+        </div>
+
+    )
+
+
+
+
+
+A
+
+
+B
+
+
+
+
+OB
+
+
+q
+BBBBBBBBB}
